@@ -1,0 +1,29 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<!--это все CurrentXmlTest-->
+<suite name="Smoke">
+    <!--паралельно-->
+    <!--parallel="methods" -->
+    <!--в два потока-->
+    <!--thread-count="2"-->
+
+
+
+    <!--// test - группа тестов? имя должно буть униакльным отличным от suite-->
+    <test name="Chrome group">
+
+        <parameter name="browser" value="chrome"/>
+
+        <!--// классы тестов-->
+        <classes>
+
+            <class name="com.software.testcases.AuthorizationTests">
+
+                <!--<methods>-->
+                    <!--<include name="userShouldBeAuthorizedWithValidCredentials"/>-->
+                <!--</methods>-->
+            </class>
+        </classes>
+
+    </test>
+</suite>
