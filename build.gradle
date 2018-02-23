@@ -17,8 +17,13 @@ dependencies {
     compile('org.testng:testng:6.12',
 //            обертка для  @dataProvider и вместо нее надо использовать @DataSupplier - альтернатива @dataProvider
            // нужно выкачивать плагин из репиозтория, утсановить test-data-supplier
-            'io.github.sskorol:test-data-supplier:1.3.0')
+            'io.github.sskorol:test-data-supplier:1.3.0',
+            //lombok plugin скачать установить
+            //генерирует код для моделей
+            'org.projectlombok:lombok:1.16.18')
 //    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile 'org.assertj:assertj-core:3.8.0'
+
 }
 
 task wrapper(type: Wrapper){
