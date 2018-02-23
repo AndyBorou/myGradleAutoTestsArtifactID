@@ -56,7 +56,7 @@ public class AuthorizationTests {
     //get from @DataProvider annotashions , method
     @Test(dataProvider = "getStringDataFromSupplier", dataProviderClass = DataSuppliers.class)
     public void userShouldBeAuthorizedWithValidCredentials(final String user) {
-        System.out.println("String date!!! - " + user);
+        System.out.println("String date!!!  - " + user);
 
     }
 
