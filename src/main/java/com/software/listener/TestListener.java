@@ -1,11 +1,12 @@
 package com.software.listener;
 
+import lombok.extern.slf4j.Slf4j;
 import org.testng.*;
-import org.testng.annotations.ITestAnnotation;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
+import java.time.LocalDate;
 
+// @Slf4j - logger
+@Slf4j
 public class TestListener implements IInvokedMethodListener {
 
     @Override
@@ -21,7 +22,8 @@ public class TestListener implements IInvokedMethodListener {
     }
 
     private void takeScreenshot() {
-        System.out.println("Taking screen shot !!!");
+       // String.format("Taking screen shot %s - %s", "data", LocalDate.now());
+        log.info("Taking screen shot !!! {} - {}", "data", LocalDate.now());
     }
 
 }

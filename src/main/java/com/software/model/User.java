@@ -26,6 +26,9 @@ public class User {
     private final String userName;
     private final String password;
 
+    public static User dummy(){
+        return new User ("defU", "defP");
+    }
 //    public User(final String userName, final String password) {
 //        this.userName = userName;
 //        this.password = password;

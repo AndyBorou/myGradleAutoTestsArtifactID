@@ -39,12 +39,12 @@ public class DataSuppliers {
 
     //
 
-    @DataSupplier(flatMap = true)
-    public StreamEx getDataFromSuppliersAsList() {
-        return StreamEx.of(asList(new User("user1", "pass1"), new User("user2", "pass2"))
-                , asList(new User("user3", "pass3"), new User("user4", "pass4"))
-        );
-    }
+//    @DataSupplier(flatMap = true)
+//    public StreamEx getDataFromSuppliersAsList() {
+//        return StreamEx.of(asList(new User("user1", "pass1"), new User("user2", "pass2"))
+//                , asList(new User("user3", "pass3"), new User("user4", "pass4"))
+//        );
+//    }
 
 
     @DataSupplier(flatMap = true)
@@ -53,7 +53,7 @@ public class DataSuppliers {
         final String dataSource = ofNullable(method.getDeclaredAnnotation(DataAnot.class))
         .map(DataAnot::source)
         .orElse("give me json");
-        System.out.println("dataSource = " + dataSource);
+       // System.out.println("dataSource = " + dataSource);
 
         return StreamEx.of(asList(new User("user1", "pass1"), new User("user2", "pass2"))
                 , asList(new User("user3", "pass3"), new User("user4", "pass4"))
