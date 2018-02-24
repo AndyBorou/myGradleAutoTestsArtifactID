@@ -3,6 +3,7 @@ package com.software.model;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Created by Andrey on 2/23/2018.
