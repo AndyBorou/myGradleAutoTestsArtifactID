@@ -1,0 +1,4 @@
+com.software.dataWork.XmlReader
+com.software.dataWork.JsonReader
+
+#сюда загружаються классы, в класс лоадер
