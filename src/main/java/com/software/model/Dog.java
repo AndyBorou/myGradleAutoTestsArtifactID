@@ -12,7 +12,7 @@ public class Dog {
         this.name = "Bobik";
     }
 
-    public Dog(String nameD) {
+    public Dog(String  nameD) {
         this.name = nameD;
     }
 

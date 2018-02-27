@@ -28,7 +28,9 @@ dependencies {
             //для строк
             'org.apache.commons:commons-lang3:3.7',
 
-            'org.jooq:joor: 0.9.5'
+            'org.jooq:joor: 0.9.5',
+
+            'org.apache.commons:commons-io:1.3.2'
 
     )
 //    testCompile group: 'junit', name: 'junit', version: '4.12'

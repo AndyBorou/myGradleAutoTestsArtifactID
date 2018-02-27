@@ -32,4 +32,21 @@ public class JsonReader implements DataReader {
             throw new IllegalArgumentException("ERROR");
         }
     }
+
+    @Override
+    public <T> T[] readArrForm(String dataSource, Class<T> entityClass) {
+        //работа с Json
+        final Gson gson = new Gson();
+        //String  path ="H:\\workspace\\autoTest\\myGradleAutoTestsArtifactID\\src\\test\\resources\\data,json";
+        final String path = ClassLoader.getSystemResource(dataSource).getPath();
+
+        try (final FileReader r = new FileReader(path)) {
+            com.google.gson.stream.JsonReader reader = new com.google.gson.stream.JsonReader(r);
+            return gson.fromJson(reader, entityClass);
+        } catch (IOException e) {
+            e.printStackTrace();
+            log.error("Unable to read {}", dataSource);
+            throw new IllegalArgumentException("ERROR");
+        }
+    }
 }

@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 // @Data - создаст Getter, Setter, RequiredArgsConstructor, ToString, EqualsAndHashCode, lombok.Value
 
-//@Builder(builderMethodName = "of", buildMethodName = "create") - позднее собдание обекта
+//@Builder(builderMethodName = "of", buildMethodName = "create") - позднее создание обекта
 @Data
 public class User {
 

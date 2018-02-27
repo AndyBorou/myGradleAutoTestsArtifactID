@@ -8,5 +8,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
 public @interface DataAnot {
+
     String source() default "";
+
+    Class entity() default Object.class;
 }

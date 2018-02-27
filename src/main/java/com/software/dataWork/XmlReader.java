@@ -26,4 +26,9 @@ public class XmlReader implements DataReader {
                 .mapTry(unmarshaller -> (T) unmarshaller.unmarshal(getSystemResource(dataSource)))
                 .getOrElseThrow( e -> new IllegalArgumentException(e));
     }
+
+    @Override
+    public <T> T[] readArrForm(String dataSource, Class<T> entityClass) {
+        return null;
+    }
 }

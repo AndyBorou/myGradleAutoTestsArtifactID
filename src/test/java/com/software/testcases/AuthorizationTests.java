@@ -1,21 +1,27 @@
 package com.software.testcases;
 
 
-import com.software.dataWork.DataReader;
+
 import com.software.model.Dog;
 import com.software.model.User;
+import com.software.model.UserCreatedByBuilder;
 import io.github.sskorol.core.DataSupplier;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
+import one.util.streamex.IntStreamEx;
 import one.util.streamex.StreamEx;
 import org.testng.annotations.Test;
 
-
+import java.awt.*;
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.logging.Logger;
-
+import static com.software.listener.TestListener.readerOf;
+import static java.util.Arrays.asList;
 import static java.util.Optional.ofNullable;
-import static com.software.utils.ServiceLoaderUtils.load;
+//import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.joor.Reflect.on;
+import static org.assertj.core.api.Assertions.*;
 
 
 @Slf4j
@@ -101,8 +107,7 @@ public class AuthorizationTests {
 //        }
 
 
-//        return StreamEx.of(asList(new User("user1", "pass1"), new User("user2", "pass2"))
-//                , asList(new User("user3", "pass3"), new User("user4", "pass4"))
+//
 //        );
     //   }
 //    @DataAnot(source = "data.json")
@@ -132,7 +137,7 @@ public class AuthorizationTests {
 //    }
 
 
-    @Test
+    //  @Test
     public void userShouldBeAuthorizedWithValidCredentials4() {
 
         //тоже самое
@@ -173,12 +178,12 @@ public class AuthorizationTests {
 //        .findFirst(dataReader -> dataReader.getClass().getSimpleName().startsWith()
 //    }
 
-    public <T> T getObject (final  Class<T> entity, final Object... args){
+    public <T> T getObject(final Class<T> entity, final Object... args) {
         return on(entity).create(args).get();
     }
 
     @DataAnot(source = "data.json")
-    @Test
+    //  @Test
     public void userShouldBeAuthorizedWithValidCredentials5() {
 
         User user = new User("name1", "pass1");
@@ -188,9 +193,9 @@ public class AuthorizationTests {
 
         User user3 = on(user).call("dummy").get();
 
-        System.out.println("user " + user + " | " + "user2 " + user2 +"user3 " + user3);
+        System.out.println("user " + user + " | " + "user2 " + user2 + "user3 " + user3);
 
-  //      getObject(User.class);
+        //      getObject(User.class);
 
         Dog dog = getObject(Dog.class);
 
@@ -202,6 +207,59 @@ public class AuthorizationTests {
 //                .findFirst(dataReader -> dataReader.getDataType("data.json").equals("json"))
 //                .map(dataReader -> dataReader.readForm("data.json", User.class))
 //                .orElseThrow(() -> new IllegalArgumentException("didn't found"));
+    }
+
+    @SuppressWarnings("unchecked")
+    @DataSupplier(flatMap = true)
+    public <T> StreamEx<T> getDataFromSuppliersAsList4(final Method method) {
+
+        return ofNullable(method.getDeclaredAnnotation(DataAnot.class))
+                .map(data -> StreamEx.of(readerOf(data.source()).readArrForm(data.source(), (Class<T>) data.entity())))
+                .orElseGet(StreamEx::empty);
+    }
+
+   @DataAnot(source = "data.json", entity = User[].class)
+    @Test(dataProvider = "getDataFromSuppliersAsList4")
+    public void test5(final User user) {
+        System.out.println("Json [] " + user);
+
+        final List<Integer> list = IntStreamEx.range(0, 10)
+                .filter(i -> i %2  == 0 )
+                .limit(4)
+                .skip(1)
+                .reverseSorted()
+                .boxed()
+                .toList();
+    }
+
+
+
+  //  @SuppressWarnings("unchecked")
+  //  @DataSupplier(flatMap = true)
+    public void createingUserFromBuilder(final Method method) {
+
+// создание обекта из Builder
+        UserCreatedByBuilder.of().userName("user1").create();
+
+
+    }
+
+
+    @DataSupplier(flatMap = true)
+    public StreamEx getDataFromList() {
+        return StreamEx.of(
+                asList(new User("user1", "pass1"), new User("user2", "pass2")),
+                asList(new User("user1", "pass1"), new User("user2", "pass2")));
+    }
+
+
+
+ //   @Test(dataProvider = "getDataFromList")
+    public void test5(final User... users) {
+        val userName = users[0].getUserName();
+
+       assertThat(asList(users)).as("Users list there").hasSize(2);
+
     }
 
 

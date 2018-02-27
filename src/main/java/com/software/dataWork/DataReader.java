@@ -15,4 +15,6 @@ public interface DataReader {
 //    }
 
     <T> T readForm (final String dataSource, final Class<T> entityClass);
+
+    <T> T[] readArrForm (final String dataSource, final Class<T> entityClass);
 }
